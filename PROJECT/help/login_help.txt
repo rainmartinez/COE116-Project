@@ -1,0 +1,170 @@
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(639, 480)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icons/store.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        self.Tab = QtWidgets.QTabWidget(MainWindow)
+        self.Tab.setGeometry(QtCore.QRect(10, 10, 621, 461))
+        self.Tab.setObjectName("Tab")
+        self.Newsfeed = QtWidgets.QWidget()
+        self.Newsfeed.setObjectName("Newsfeed")
+        self.LOnewsfeed = QtWidgets.QPushButton(self.Newsfeed)
+        self.LOnewsfeed.setGeometry(QtCore.QRect(540, 0, 75, 23))
+        self.LOnewsfeed.setObjectName("LOnewsfeed")
+        self.Ninput = QtWidgets.QPlainTextEdit(self.Newsfeed)
+        self.Ninput.setGeometry(QtCore.QRect(10, 50, 521, 41))
+        self.Ninput.setObjectName("Ninput")
+        self.Post = QtWidgets.QPushButton(self.Newsfeed)
+        self.Post.setGeometry(QtCore.QRect(540, 50, 61, 41))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("icons/apple.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Post.setIcon(icon1)
+        self.Post.setDefault(True)
+        self.Post.setObjectName("Post")
+        self.Noutput = QtWidgets.QTextBrowser(self.Newsfeed)
+        self.Noutput.setGeometry(QtCore.QRect(10, 100, 591, 331))
+        self.Noutput.setObjectName("Noutput")
+        self.labelPost = QtWidgets.QLabel(self.Newsfeed)
+        self.labelPost.setGeometry(QtCore.QRect(10, 26, 151, 20))
+        self.labelPost.setObjectName("labelPost")
+        self.PRnewsfeed = QtWidgets.QPushButton(self.Newsfeed)
+        self.PRnewsfeed.setGeometry(QtCore.QRect(460, 0, 75, 23))
+        self.PRnewsfeed.setObjectName("PRnewsfeed")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("icons/cutlery.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Tab.addTab(self.Newsfeed, icon2, "")
+        self.Forum = QtWidgets.QWidget()
+        self.Forum.setObjectName("Forum")
+        self.TabForum = QtWidgets.QTabWidget(self.Forum)
+        self.TabForum.setGeometry(QtCore.QRect(0, 0, 621, 431))
+        self.TabForum.setObjectName("TabForum")
+        self.Recipes = QtWidgets.QWidget()
+        self.Recipes.setObjectName("Recipes")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("icons/recipe.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.TabForum.addTab(self.Recipes, icon3, "")
+        self.Restaurants = QtWidgets.QWidget()
+        self.Restaurants.setObjectName("Restaurants")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("icons/restaurant (1).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.TabForum.addTab(self.Restaurants, icon4, "")
+        self.Suggestions = QtWidgets.QWidget()
+        self.Suggestions.setObjectName("Suggestions")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap("icons/restaurant.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.TabForum.addTab(self.Suggestions, icon5, "")
+        self.PRforum = QtWidgets.QPushButton(self.Forum)
+        self.PRforum.setGeometry(QtCore.QRect(460, 0, 75, 23))
+        self.PRforum.setObjectName("PRforum")
+        self.LOForum = QtWidgets.QPushButton(self.Forum)
+        self.LOForum.setGeometry(QtCore.QRect(540, 0, 75, 23))
+        self.LOForum.setObjectName("LOForum")
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap("icons/stand.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Tab.addTab(self.Forum, icon6, "")
+        self.Community = QtWidgets.QWidget()
+        self.Community.setObjectName("Community")
+        self.LOcommunity = QtWidgets.QPushButton(self.Community)
+        self.LOcommunity.setGeometry(QtCore.QRect(540, 0, 75, 23))
+        self.LOcommunity.setObjectName("LOcommunity")
+        self.PRcommunity = QtWidgets.QPushButton(self.Community)
+        self.PRcommunity.setGeometry(QtCore.QRect(460, 0, 75, 23))
+        self.PRcommunity.setObjectName("PRcommunity")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap("icons/gingerbread-man.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Tab.addTab(self.Community, icon7, "")
+
+        '''
+        buttons for main window
+        '''
+        self.LOnewsfeed.clicked.connect(self.LogOutClick)
+        self.LOForum.clicked.connect(self.LogOutClick)
+        self.LOcommunity.clicked.connect(self.LogOutClick)
+
+        #instantiate
+        self.loginWindow = QtWidgets.QDialog(MainWindow)
+        self.ui = Ui_LogInWindow()
+        self.ui.setupUi(self.loginWindow)
+        self.loginWindow.setModal(True)
+        self.loginWindow.show()
+
+        '''
+        log in 
+        '''
+        self.ui.LogIn.clicked.connect(self.LogInClick)
+
+        self.retranslateUi(MainWindow)
+        self.Tab.setCurrentIndex(1)
+        self.TabForum.setCurrentIndex(2)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "PassionEAT"))
+        self.LOnewsfeed.setText(_translate("MainWindow", "Log Out"))
+        self.Post.setText(_translate("MainWindow", "Post"))
+        self.labelPost.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt;\">What\'s cooking?</span></p></body></html>"))
+        self.PRnewsfeed.setText(_translate("MainWindow", "Profile"))
+        self.Tab.setTabText(self.Tab.indexOf(self.Newsfeed), _translate("MainWindow", "Newsfeed"))
+        self.TabForum.setTabText(self.TabForum.indexOf(self.Recipes), _translate("MainWindow", "Recipes"))
+        self.TabForum.setTabText(self.TabForum.indexOf(self.Restaurants), _translate("MainWindow", "Restaurants"))
+        self.TabForum.setTabText(self.TabForum.indexOf(self.Suggestions), _translate("MainWindow", "Suggestions"))
+        self.PRforum.setText(_translate("MainWindow", "Profile"))
+        self.LOForum.setText(_translate("MainWindow", "Log Out"))
+        self.Tab.setTabText(self.Tab.indexOf(self.Forum), _translate("MainWindow", "Forum"))
+        self.LOcommunity.setText(_translate("MainWindow", "Log Out"))
+        self.PRcommunity.setText(_translate("MainWindow", "Profile"))
+        self.Tab.setTabText(self.Tab.indexOf(self.Community), _translate("MainWindow", "Community"))
+
+    #log in
+
+    def LogInClick(self):
+        print("test")
+        user = self.ui.UsernameInput.text()
+        passw = self.ui.PasswordInput.text()
+
+        with open("accounts.txt", "r") as f:
+
+            data = f.readlines()
+
+            for line in data:
+                lineZ = line.strip().split(";")
+                print(lineZ)
+                a = lineZ[0]
+                b = lineZ[1]
+
+
+                if a == user and b == passw:
+
+                    #hide Log in window
+                    self.loginWindow.close()                  #find a function to destroy
+                    self.ui.UsernameInput.clear()
+                    self.ui.PasswordInput.clear()
+
+                    #show main window
+                    MainWindow.show()
+                    print("Success, it matches.")
+                    break;
+                else:
+                    print("Failed.")
+                    MainWindow.close()
+
+    '''
+    Log out
+    '''   
+
+    def LogOutClick(self):
+
+        MainWindow.close()
+        self.loginWindow.show()
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QWidget()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    sys.exit(app.exec_())
